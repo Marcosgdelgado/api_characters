@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI, HTTPException, APIRouter, Depends
+from fastapi import FastAPI
 from app.characters.routes import router as characters_routes
 from app.database import initialize_db, close_session
 
