@@ -55,3 +55,17 @@ jobs:
       - name: PyLint
         run: |
           pylint ./**/*.py *.py --rcfile ./config/pylint.cfg --fail-under 10 --ignore-patterns=.github
+
+  hadolint:
+    name: Hadolint
+    needs: [flake8, black]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        Dockerfile: [Hadolint]
+    steps:
+      - uses: actions/checkout@v2 
+      - uses: hadolint/hadolint-action@v2.0.0
+        with:
+          dockerfile: Dockerfile
+          ignore: DL3002, DL3008
