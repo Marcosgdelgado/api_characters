@@ -22,7 +22,7 @@ def insert_character(db: Session, character: CharacterBase):
         return False
 
 
-def select_user(db: Session, id: int):
+def select_character(db: Session, id: int):
     """Consulta un personaje por su ID.
 
     Args:
@@ -40,7 +40,7 @@ def select_user(db: Session, id: int):
         return None
 
 
-def select_all_users(db: Session):
+def select_all_characters(db: Session):
     """Gets all characters in the database.
 
     Args:

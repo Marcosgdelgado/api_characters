@@ -1,7 +1,7 @@
 # APIRouter creates path operations for item module
 from fastapi import HTTPException, APIRouter, Depends
 from sqlalchemy.orm import Session
-from .crud import select_all_users, select_user, insert_character, delete_character
+from .crud import select_all_characters, select_character, insert_character, delete_character
 from .schemas import CharacterBase, Character, CharactersOut
 from app.database import get_session
 
@@ -25,7 +25,7 @@ def return_all_characters(db: Session = Depends(get_session)) -> list[Characters
     Returns:
         list[CharactersOut]: List with result of query consult.
     """
-    result = select_all_users(db)
+    result = select_all_characters(db)
     if result is None:
         raise HTTPException(status_code=400, detail="HTTP Code 400 - Bad Request")
     return result
@@ -45,7 +45,7 @@ def find_character(id: int, db: Session = Depends(get_session)) -> Character:
     Returns:
         Character: Character object with  data founded.
     """
-    result = select_user(db, id)
+    result = select_character(db, id)
     if result is None:
         raise HTTPException(status_code=400, detail="HTTP Code 400 - Bad Request")
     return result
